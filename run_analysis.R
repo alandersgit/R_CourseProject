@@ -1,5 +1,8 @@
+#Getting and Cleaning Data Course Project
+#27 December 2015
+
 library(dplyr)
-setwd("C:/MOOC/GettingAndCleaningData/CourseProject")
+setwd("C:/MOOC/GettingAndCleaningData/CourseProject/R_CourseProject")
 
 #import files
 #test set
@@ -16,7 +19,7 @@ tra.X <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\train\\X
 fet <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\features.txt', sep=" ")
 act <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\activity_labels.txt', sep=" ")
 
-#look up activity label merge test.Y and act
+#look up activity label merge with test and training sets
 #test set
 tes.Y.lbl <- merge(tes.Y, act, by.x = "V1", by.y = "V1")
 #train set
@@ -48,7 +51,7 @@ colnames(col.std) <- "colindex"
 col.sel <- rbind(col.mn, col.std)               
 col.sel.ord <- sort.int(col.sel[,"colindex"], decreasing=FALSE) 
 
-#select columns from dataset
+#select mean and std columns from dataset using index calculated above
 tes.tra.f <- cbind(tes.tra[,"subjectid"], tes.tra[,"ActivityLabel"],tes.tra[,col.sel.ord])
 colnames(tes.tra.f)[1] <- "SubjectID"
 colnames(tes.tra.f)[2] <- "ActivityLabel"
@@ -57,4 +60,4 @@ colnames(tes.tra.f)[2] <- "ActivityLabel"
 out.f <- summarise_each(group_by(tes.tra.f, SubjectID, ActivityLabel), funs(mean(., na.rm = TRUE)))
 colnames(r)[3:88] <- paste(colnames(out.f)[3:88], "_Avg")
 
-write.table(out.f, "output.txt", sep = "\t", row.names = FALSE)
+write.table(r, "r_CourseProject.txt", sep = "\t", row.names = FALSE)
