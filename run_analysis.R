@@ -2,22 +2,22 @@
 #27 December 2015
 
 library(dplyr)
-setwd("C:/MOOC/GettingAndCleaningData/CourseProject/R_CourseProject")
+
 
 #import files
 #test set
-tes.sub <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\test\\subject_test.txt', sep="\t")
-tes.Y <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\test\\y_test.txt', sep="\t")
-tes.X <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\test\\X_test.txt')
+tes.sub <- read.table(paste(getwd(), '/test/subject_test.txt', sep=""), sep="\t")
+tes.Y <- read.table(paste(getwd(), '/test/y_test.txt', sep=""), sep="\t")
+tes.X <- read.table(paste(getwd(), '/test/X_test.txt', sep=""))
 
 #train set
-tra.sub <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\train\\subject_train.txt', sep="\t")
-tra.Y <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\train\\y_train.txt', sep="\t")
-tra.X <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\train\\X_train.txt')
+tra.sub <- read.table(paste(getwd(), '/train/subject_train.txt', sep=""), sep="\t")
+tra.Y <- read.table(paste(getwd(), '/train/y_train.txt', sep=""), sep="\t")
+tra.X <- read.table(paste(getwd(), '/train/X_train.txt', sep =""))
 
 #column labels
-fet <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\features.txt', sep=" ")
-act <- read.table('C:\\MOOC\\GettingAndCleaningData\\UCI HAR Dataset\\activity_labels.txt', sep=" ")
+fet <- read.table(paste(getwd(), '/features.txt', sep=""), sep=" ")
+act <- read.table(paste(getwd(), '/activity_labels.txt', sep=""), sep=" ")
 
 #look up activity label merge with test and training sets
 #test set
